@@ -1,8 +1,15 @@
 {
-  "name": "@nestjs/sequelize",
-  "version": "10.0.1",
+  "name": "@rivand/nestjs-sequelize",
+  "version": "10.0.2",
   "description": "Nest - modern, fast, powerful node.js web framework (@sequelize)",
   "author": "Kamil Mysliwiec",
+  "contributors": [
+    {
+      "email": "a_rivand@yahoo.com",
+      "name": "Amir Mohammad Rivand",
+      "url": "https://amirrivand.ir"
+    }
+  ],
   "license": "MIT",
   "url": "https://github.com/nestjs/sequelize#readme",
   "scripts": {
@@ -26,6 +33,7 @@
     "@nestjs/core": "10.3.8",
     "@nestjs/platform-express": "10.3.8",
     "@nestjs/testing": "10.3.8",
+    "@types/cls-hooked": "^4.3.8",
     "@types/jest": "29.5.12",
     "@types/node": "20.12.7",
     "@types/supertest": "6.0.2",
@@ -51,6 +59,7 @@
     "typescript": "5.4.5"
   },
   "dependencies": {
+    "cls-hooked": "^4.2.2",
     "uuid": "9.0.1"
   },
   "peerDependencies": {

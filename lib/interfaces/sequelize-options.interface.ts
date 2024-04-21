@@ -4,6 +4,10 @@ import { SequelizeOptions } from 'sequelize-typescript';
 
 export type SequelizeModuleOptions = {
   /**
+   * Namespace
+   */
+  namespace?: string;
+  /**
    * Connection name
    */
   name?: string;

@@ -26,6 +26,7 @@ import {
   SEQUELIZE_MODULE_ID,
   SEQUELIZE_MODULE_OPTIONS,
 } from './sequelize.constants';
+import { createNamespace } from 'cls-hooked';
 
 @Global()
 @Module({})
@@ -135,6 +136,12 @@ export class SequelizeCoreModule implements OnApplicationShutdown {
   ): Promise<Sequelize> {
     return lastValueFrom(
       defer(async () => {
+        if (options.namespace) {
+          const ns = createNamespace(options.namespace);
+          Sequelize.useCLS(ns);
+          delete options.namespace;
+        }
+
         const sequelize = options?.uri
           ? new Sequelize(options.uri, options)
           : new Sequelize(options);
@@ -144,9 +151,8 @@ export class SequelizeCoreModule implements OnApplicationShutdown {
         }
 
         const connectionToken = options.name || DEFAULT_CONNECTION_NAME;
-        const models = EntitiesMetadataStorage.getEntitiesByConnection(
-          connectionToken,
-        );
+        const models =
+          EntitiesMetadataStorage.getEntitiesByConnection(connectionToken);
         sequelize.addModels(models as any);
 
         await sequelize.authenticate();
